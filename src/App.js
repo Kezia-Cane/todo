@@ -5,10 +5,7 @@ import TodoItem from './components/TodoItem';
 
 function App() {
   const [todos, setTodos] = useState([
-    // Initial example todos (optional)
-    { text: 'Learn React', isCompleted: false },
-    { text: 'Build a To-Do App', isCompleted: false },
-    { text: 'Deploy the App', isCompleted: false },
+
   ]);
 
   const addTodo = (text) => {
