@@ -71,3 +71,94 @@ button:hover {
 .todo div button:hover {
   opacity: 0.8;
 }
+
+/* Styles for TodoItem component */
+.todo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  background: #eee;
+  border-radius: 4px;
+}
+
+.todo.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.todo span {
+  flex-grow: 1;
+  margin-right: 10px;
+  cursor: pointer; /* Indicate text is clickable for completion */
+}
+
+.edit-input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.todo-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 1.1em; /* Make icons slightly larger */
+  color: #555;
+  transition: color 0.2s ease;
+}
+
+.icon-button:hover {
+  color: #000;
+}
+
+.complete-button {
+  color: #28a745; /* Green */
+}
+.complete-button.undo {
+  color: #ffc107; /* Yellow */
+}
+.complete-button:hover {
+  color: #218838;
+}
+.complete-button.undo:hover {
+  color: #e0a800;
+}
+
+.edit-button {
+  color: #007bff; /* Blue */
+}
+.edit-button:hover {
+  color: #0056b3;
+}
+
+.delete-button {
+  color: #dc3545; /* Red */
+}
+.delete-button:hover {
+  color: #c82333;
+}
+
+.save-button {
+  color: #28a745; /* Green */
+}
+.save-button:hover {
+  color: #218838;
+}
+
+.cancel-button {
+  color: #6c757d; /* Gray */
+}
+.cancel-button:hover {
+  color: #5a6268;
+}
