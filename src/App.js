@@ -19,6 +19,12 @@ function App() {
     setTodos(newTodos);
   };
 
+  const editTodo = (index, newText) => {
+    const newTodos = [...todos];
+    newTodos[index].text = newText;
+    setTodos(newTodos);
+  };
+
   const removeTodo = (index) => {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
@@ -37,6 +43,7 @@ function App() {
             todo={todo}
             toggleComplete={toggleComplete}
             removeTodo={removeTodo}
+            editTodo={editTodo} // Pass editTodo function
           />
         ))}
       </div>
