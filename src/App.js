@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'; // Import useEffect
 import './App.css';
 import TodoForm from './components/TodoForm';
 import TodoItem from './components/TodoItem';
 
-function App() {
-  const [todos, setTodos] = useState([
+const LOCAL_STORAGE_KEY = 'react-todo-list-todos';
 
-  ]);
+function App() {
+  // Load todos from local storage or use empty array
+  const [todos, setTodos] = useState(() => {
+    try {
+      const storedTodos = localStorage.getItem(LOCAL_STORAGE_KEY);
+      return storedTodos ? JSON.parse(storedTodos) : [];
+    } catch (error) {
+      console.error("Error parsing todos from localStorage", error);
+      return [];
+    }
+  });
+
+  // Save todos to local storage whenever they change
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
+    } catch (error) {
+      console.error("Error saving todos to localStorage", error);
+    }
+  }, [todos]);
 
   const addTodo = (text) => {
     const newTodos = [...todos, { text, isCompleted: false }];
