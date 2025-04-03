@@ -1,16 +1,27 @@
 body {
-  font-family: sans-serif;
-  background-color: #f4f4f4;
-  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* More modern font stack */
+  background: linear-gradient(to right bottom, #6dd5ed, #2193b0); /* Example gradient: Light blue to darker blue */
+  /* Alternative gradient: */
+  /* background: linear-gradient(to right bottom, #ee9ca7, #ffdde1); */ /* Pinkish */
+  /* background: linear-gradient(to right bottom, #b2fefa, #0ed2f7); */ /* Teal */
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
+  min-height: 100vh; /* Ensure gradient covers full height */
+  display: flex; /* Helps center the .app container */
+  justify-content: center; /* Center .app horizontally */
+  align-items: flex-start; /* Align .app to the top */
+  padding-top: 50px; /* Add some space above the app container */
+  box-sizing: border-box; /* Include padding in height calculation */
 }
 
 .app {
-  background: #fff;
-  margin: 50px auto;
+  background: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+  margin: 0 auto; /* Keep horizontal centering if flexbox fails, remove top/bottom margin */
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
   max-width: 500px;
+  width: 90%; /* Ensure it doesn't touch edges on smaller screens */
 }
 
 h1 {
