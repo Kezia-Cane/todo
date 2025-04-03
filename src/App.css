@@ -42,7 +42,7 @@ button {
 }
 
 button:hover {
-  background-color: #4cae4c;
+  background-color: #4b4b4b1e;
 }
 
 .todo-list {
@@ -60,12 +60,11 @@ button:hover {
 }
 
 .todo div button {
-  background-color: #d9534f;
   margin-left: 5px;
 }
 
 .todo div button:first-of-type {
-  background-color: #00ff22;
+
 }
 
 .todo div button:hover {
@@ -123,7 +122,7 @@ button:hover {
 }
 
 .complete-button {
-  color: #f5f5f5; /* Green */
+  color: #09ff00; /* Green */
 }
 .complete-button.undo {
   color: #ffffff; /* Yellow */
