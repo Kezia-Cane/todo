@@ -71,7 +71,14 @@ function TodoItem({ todo, index, toggleComplete, removeTodo, editTodo }) { // Ad
             <button onClick={handleEdit} className="icon-button edit-button">
               <FaEdit />
             </button>
-            <button onClick={() => removeTodo(index)} className="icon-button delete-button">
+            <button
+              onClick={() => {
+                if (window.confirm(`Are you sure you want to delete "${todo.text}"?`)) {
+                  removeTodo(index);
+                }
+              }}
+              className="icon-button delete-button"
+            >
               <FaTrash />
             </button>
           </>
