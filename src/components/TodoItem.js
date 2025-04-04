@@ -29,11 +29,10 @@ function TodoItem({ todo, toggleComplete, removeTodo }) {
         </button>
         {/* Removed Edit button */}
         <button
+          // Remove the window.confirm() check
           onClick={() => {
-            if (window.confirm(`Are you sure you want to delete "${todo.text}"?`)) {
-              // Call removeTodo with todo.id instead of index
-              removeTodo(todo.id);
-            }
+            // Call removeTodo directly
+            removeTodo(todo.id);
           }}
           className="icon-button delete-button"
         >
