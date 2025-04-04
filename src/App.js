@@ -7,6 +7,7 @@ const API_URL = 'http://localhost:3001/api/todos'; // Backend API URL
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const [formKey, setFormKey] = useState(0); // Add state for form key
 
   // Fetch todos from backend on component mount
   useEffect(() => {
@@ -40,7 +41,9 @@ function App() {
 
   // Note: Backend uses 'completed', frontend used 'isCompleted'
   // Note: We now use 'id' instead of 'index'
-  const toggleComplete = (id) => {
+  // Wrap in useCallback
+  const toggleComplete = useCallback((id) => {
+    // Need 'todos' in dependency array if accessing it directly
     const todo = todos.find(t => t.id === id);
     if (!todo) return;
 
@@ -56,14 +59,16 @@ function App() {
         return res.json();
       })
       .then(updatedTodo => {
-        setTodos(todos.map(t => (t.id === id ? updatedTodo : t)));
+        // Use functional update for setTodos
+        setTodos(prevTodos => prevTodos.map(t => (t.id === id ? updatedTodo : t)));
       })
       .catch(error => console.error("Error updating todo:", error));
-  };
+  }, [todos]); // Add 'todos' as dependency because we use it in find()
 
   // Note: We now use 'id' instead of 'index'
   // Refactored using async/await and functional state update
-  const removeTodo = async (id) => {
+  // Wrap in useCallback
+  const removeTodo = useCallback(async (id) => {
     try {
       const res = await fetch(`${API_URL}/${id}`, {
         method: 'DELETE',
@@ -75,19 +80,21 @@ function App() {
 
       // Filter out the deleted todo from the state using functional update
       setTodos(prevTodos => prevTodos.filter(t => t.id !== id));
-
+      // Increment form key to force TodoForm remount
+      setFormKey(prevKey => prevKey + 1);
     } catch (error) {
       console.error("Error deleting todo:", error);
       // Optionally add user feedback here if deletion fails
     }
-  };
+  }, []); // No dependencies needed here as it only uses 'id' and 'setTodos'
 
   // editTodo functionality removed as backend doesn't support it yet
 
   return (
     <div className="app">
       <h1>My To-Do List</h1>
-      <TodoForm addTodo={addTodo} />
+      {/* Add key prop to TodoForm */}
+      <TodoForm key={formKey} addTodo={addTodo} />
       <div className="todo-list">
         {todos.map((todo) => ( // Removed index from map
           <TodoItem

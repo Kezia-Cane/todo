@@ -44,4 +44,5 @@ function TodoItem({ todo, toggleComplete, removeTodo }) {
   );
 }
 
-export default TodoItem;
+// Wrap the component in React.memo
+export default React.memo(TodoItem);
