@@ -1,14 +1,14 @@
-import React, { useState } from 'react'; // Keep React import
+import React, { useState } from 'react';
 
 function TodoForm({ addTodo }) {
-  // console.log('TodoForm rendered'); // Remove render log
+
   const [value, setValue] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!value) return; // Don't add empty todos
+    if (!value) return;
     addTodo(value);
-    setValue(''); // Clear input after adding
+    setValue('');
   };
 
   return (
@@ -18,7 +18,6 @@ function TodoForm({ addTodo }) {
         className="input"
         value={value}
         onChange={(e) => {
-          // console.log('TodoForm onChange fired. New value:', e.target.value); // Remove logging
           setValue(e.target.value);
         }}
         placeholder="Add a new task"
@@ -28,5 +27,4 @@ function TodoForm({ addTodo }) {
   );
 }
 
-// Wrap the component in React.memo
 export default React.memo(TodoForm);
