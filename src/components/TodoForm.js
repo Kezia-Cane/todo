@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // Keep React import
 
 function TodoForm({ addTodo }) {
+  // console.log('TodoForm rendered'); // Remove render log
   const [value, setValue] = useState('');
 
   const handleSubmit = (e) => {
@@ -16,7 +17,10 @@ function TodoForm({ addTodo }) {
         type="text"
         className="input"
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => {
+          // console.log('TodoForm onChange fired. New value:', e.target.value); // Remove logging
+          setValue(e.target.value);
+        }}
         placeholder="Add a new task"
       />
       <button type="submit">Add</button>
@@ -24,4 +28,5 @@ function TodoForm({ addTodo }) {
   );
 }
 
-export default TodoForm;
+// Wrap the component in React.memo
+export default React.memo(TodoForm);
