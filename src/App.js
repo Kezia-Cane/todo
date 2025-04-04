@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import TodoForm from './components/TodoForm';
 import TodoItem from './components/TodoItem';
@@ -89,30 +89,6 @@ function App() {
             toggleComplete={toggleComplete} // Pass id-based function
             removeTodo={removeTodo} // Pass id-based function
             // editTodo removed
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export default App;
-    setTodos(newTodos);
-  };
-
-  return (
-    <div className="app">
-      <h1>My To-Do List</h1>
-      <TodoForm addTodo={addTodo} />
-      <div className="todo-list">
-        {todos.map((todo, index) => (
-          <TodoItem
-            key={index}
-            index={index}
-            todo={todo}
-            toggleComplete={toggleComplete}
-            removeTodo={removeTodo}
-            editTodo={editTodo} // Pass editTodo function
           />
         ))}
       </div>

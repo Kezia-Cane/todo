@@ -1,88 +1,44 @@
-import React, { useState } from 'react';
-import { FaEdit, FaSave, FaTimes, FaTrash } from 'react-icons/fa'; // Import icons
+import React from 'react'; // Removed useState
+import { FaTrash } from 'react-icons/fa'; // Removed FaEdit, FaSave, FaTimes
 
-function TodoItem({ todo, index, toggleComplete, removeTodo, editTodo }) { // Add editTodo prop
-  const [isEditing, setIsEditing] = useState(false);
-  const [editText, setEditText] = useState(todo.text);
+// Removed index and editTodo from props
+function TodoItem({ todo, toggleComplete, removeTodo }) {
 
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
-
-  const handleSave = () => {
-    if (editText.trim()) {
-      editTodo(index, editText.trim());
-      setIsEditing(false);
-    }
-  };
-
-  const handleCancel = () => {
-    setEditText(todo.text); // Reset text
-    setIsEditing(false);
-  };
-
-  const handleInputChange = (e) => {
-    setEditText(e.target.value);
-  };
-
-  // Handle Enter key press in edit input
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSave();
-    }
-  };
+  // Removed all editing state and handlers (isEditing, editText, handleEdit, handleSave, handleCancel, handleInputChange, handleKeyPress)
 
   return (
-    <div className={`todo ${todo.isCompleted ? 'completed' : ''}`}>
-      {isEditing ? (
-        <input
-          type="text"
-          value={editText}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyPress} // Save on Enter
-          autoFocus // Focus input on edit
-          className="edit-input"
-        />
-      ) : (
-        <span
-          onClick={() => toggleComplete(index)} // Toggle complete on text click
-          style={{ textDecoration: todo.isCompleted ? 'line-through' : '', cursor: 'pointer' }}
-        >
-          {todo.text}
-        </span>
-      )}
+    // Use todo.completed instead of todo.isCompleted
+    <div className={`todo ${todo.completed ? 'completed' : ''}`}>
+      {/* Removed editing input field */}
+      <span
+        // Call toggleComplete with todo.id instead of index
+        onClick={() => toggleComplete(todo.id)}
+        // Use todo.completed instead of todo.isCompleted
+        style={{ textDecoration: todo.completed ? 'line-through' : '', cursor: 'pointer' }}
+      >
+        {todo.text}
+      </span>
 
       <div className="todo-buttons">
-        {isEditing ? (
-          <>
-            <button onClick={handleSave} className="icon-button save-button">
-              <FaSave />
-            </button>
-            <button onClick={handleCancel} className="icon-button cancel-button">
-              <FaTimes />
-            </button>
-          </>
-        ) : (
-          <>
-            <button onClick={() => toggleComplete(index)} className={`icon-button complete-button ${todo.isCompleted ? 'undo' : ''}`}>
-              {/* Optionally add check/undo icons here later */}
-              {todo.isCompleted ? 'Undo' : '✓'}
-            </button>
-            <button onClick={handleEdit} className="icon-button edit-button">
-              <FaEdit />
-            </button>
-            <button
-              onClick={() => {
-                if (window.confirm(`Are you sure you want to delete "${todo.text}"?`)) {
-                  removeTodo(index);
-                }
-              }}
-              className="icon-button delete-button"
-            >
-              <FaTrash />
-            </button>
-          </>
-        )}
+        {/* Removed editing buttons (Save, Cancel) */}
+        {/* Removed non-editing buttons section wrapper */}
+        {/* Call toggleComplete with todo.id instead of index */}
+        <button onClick={() => toggleComplete(todo.id)} className={`icon-button complete-button ${todo.completed ? 'undo' : ''}`}>
+          {/* Use todo.completed instead of todo.isCompleted */}
+          {todo.completed ? 'Undo' : '✓'}
+        </button>
+        {/* Removed Edit button */}
+        <button
+          onClick={() => {
+            if (window.confirm(`Are you sure you want to delete "${todo.text}"?`)) {
+              // Call removeTodo with todo.id instead of index
+              removeTodo(todo.id);
+            }
+          }}
+          className="icon-button delete-button"
+        >
+          <FaTrash />
+        </button>
       </div>
     </div>
   );
